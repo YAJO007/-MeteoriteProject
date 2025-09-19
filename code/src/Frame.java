@@ -8,27 +8,34 @@ public class Frame extends JFrame {
     public Frame() {
         setTitle("Meteorite");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(1000, 700);
+        setSize(1000, 600);
         setLocationRelativeTo(null);
 
         background = new ImageIcon("photo/photo1.jpg").getImage();
         meteor = new ImageIcon("photo/photo2.png").getImage();
 
-        add(new GamePanel());
+        add(new MeteorPanel());
         setVisible(true);
     }
 
-    public class GamePanel extends JPanel {
-        @Override
-        protected void paintComponent(Graphics g) {
-            super.paintComponent(g);
+    public class MeteorPanel extends JPanel {
+            Image background = Toolkit.getDefaultToolkit().getImage("photo/bk.png");
+            Image meteor = Toolkit.getDefaultToolkit().getImage("photo/photo2.png");
 
-            Graphics2D g2 = (Graphics2D) g;
-            g2.drawImage(background, 0, 0 ,getWidth(), getHeight(), this);
+            @Override
+            public void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.drawImage(background, 0, 0, getWidth(),getHeight(), this);
+                g.drawImage(meteor, 100, 100, 40, 40, this);
 
-            g2.drawImage(meteor, 100, 100, 40, 40, this);
 
+                g.setFont(new Font("Times New Roman", Font.BOLD, 20));
+                g.setColor(Color.WHITE);
+                g.drawString("Meteorite", 10, 20);
+
+            }
         }
+
     }
 
-}
+
